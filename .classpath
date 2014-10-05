@@ -16,5 +16,8 @@
 	<classpathentry kind="lib" path="/contexttoolkit-demos/lib/slf4j-api-1.6.0.jar"/>
 	<classpathentry kind="lib" path="/contexttoolkit-demos/lib/slf4j-log4j12-1.6.0.jar"/>
 	<classpathentry kind="lib" path="/contexttoolkit-demos/lib/weka.jar"/>
+	<classpathentry kind="lib" path="lib/swing-layout-1.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="lib/beansbinding-1.2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

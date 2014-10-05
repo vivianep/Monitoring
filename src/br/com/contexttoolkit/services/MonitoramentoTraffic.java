@@ -11,7 +11,7 @@ public class MonitoramentoTraffic implements Monitoramento {
 	private Widget trafficInput;
 	private Widget trafficWidget;
 	private Enactor trafficEnactor;
-	private TrafficService trafficService;
+	public TrafficService trafficService;
 	
 	public MonitoramentoTraffic() {
 		Discoverer.start();
@@ -34,7 +34,7 @@ public class MonitoramentoTraffic implements Monitoramento {
 		trafficInput.updateData("via", via);
 		trafficInput.updateData("carros", quantCarros);
 		trafficInput.updateData("notifications", true);
-		trafficInput.updateData("notifications", false);
+		//trafficInput.updateData("notifications", false);
 		
 	}
 

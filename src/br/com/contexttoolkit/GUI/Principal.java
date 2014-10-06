@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.contexttoolkit.services.Monitoramento;
+import br.com.contexttoolkit.services.MonitoramentoAcidente;
 import br.com.contexttoolkit.services.MonitoramentoTraffic;
 
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -26,9 +28,10 @@ import javax.swing.table.TableModel;
  */
 public class Principal extends javax.swing.JFrame {
 	private MonitoramentoTraffic monitoramento;
-	String elemento_atual_cb = "1";
-	List qtd_carros_array = new ArrayList<Integer>();
-	String[] status_via = new String[5];
+	private String elemento_atual_cb = "1";
+	private String via_acidente;
+	private String[] status_via = new String[5];
+	MonitoramentoAcidente monitoramentoAcidente;
 
 	/**
 	 * Creates new form NewJFrame
@@ -37,10 +40,12 @@ public class Principal extends javax.swing.JFrame {
 		initComponents();
 	}
 
-	public Principal(MonitoramentoTraffic monitoramento) {
+	public Principal(MonitoramentoTraffic monitoramento,MonitoramentoAcidente monitoramentoAcidente) {
 		for (int i = 0; i < 5; i++) {
 			status_via[i] = "Livre";
 		}
+		this.monitoramentoAcidente= monitoramentoAcidente;
+		via_acidente="Via 1";
 		initComponents();
 		this.monitoramento = monitoramento;
 		jLabel6.setText("Livre");
@@ -65,6 +70,7 @@ public class Principal extends javax.swing.JFrame {
 		jSliderQtdCarros = new javax.swing.JSlider();
 		jScrollPane1 = new javax.swing.JScrollPane();
 		jTable1 = new javax.swing.JTable();
+		jTable2 = new javax.swing.JTable();
 		jPanel3 = new javax.swing.JPanel();
 		jLabel4 = new javax.swing.JLabel();
 		jPanel10 = new javax.swing.JPanel();
@@ -110,8 +116,9 @@ public class Principal extends javax.swing.JFrame {
 		jLabel2.setText("Via ");
 
 		jLabelQtdCarros.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
+		jSliderQtdCarros.setValue(0);
 		jLabelQtdCarros.setText(Integer.toString(jSliderQtdCarros.getValue()));
-
+		
 		jSliderQtdCarros
 				.addChangeListener(new javax.swing.event.ChangeListener() {
 					public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -194,12 +201,36 @@ public class Principal extends javax.swing.JFrame {
 												javax.swing.GroupLayout.DEFAULT_SIZE,
 												Short.MAX_VALUE)));
 
-		jTable1.setFont(new java.awt.Font("LuzSans-Book", 0, 14));
-		jTable1.setForeground(new java.awt.Color(153, 153, 153));
+		jTable1.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
+		jTable1.setForeground(new java.awt.Color(0, 0, 0));
 		jTable1.setModel(new ModifiedModel());
 		jTable1.setGridColor(new java.awt.Color(0, 0, 0));
-		jTable1.setRowHeight(20);
+		jTable1.setRowHeight(25);
 		jTable1.getTableHeader().setReorderingAllowed(false);
+		jTable1.getColumnModel().getColumn(0).setPreferredWidth(150);
+		jTable1.getColumnModel().getColumn(1).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(2).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(4).setPreferredWidth(50);
+		jTable1.getColumnModel().getColumn(5).setPreferredWidth(50);
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+		centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		jTable1.setDefaultRenderer(Object.class, centerRenderer);
+		jTable2.setForeground(new java.awt.Color(0, 0, 0));
+		jTable2.setGridColor(new java.awt.Color(0, 0, 0));
+		jTable2.setModel(new ModifiedModelSAMU());
+		jTable2.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
+		jTable2.getColumnModel().getColumn(0).setPreferredWidth(150);
+		jTable2.getColumnModel().getColumn(1).setPreferredWidth(50);
+		jTable2.getColumnModel().getColumn(2).setPreferredWidth(50);
+		jTable2.getColumnModel().getColumn(3).setPreferredWidth(50);
+		jTable2.getColumnModel().getColumn(4).setPreferredWidth(50);
+		jTable2.getColumnModel().getColumn(5).setPreferredWidth(50);
+		jTable2.setRowHeight(25);
+		jTable2.setDefaultRenderer(Object.class, centerRenderer);
+		
+		
+		
 		jScrollPane1.setViewportView(jTable1);
 
 		jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -215,7 +246,7 @@ public class Principal extends javax.swing.JFrame {
 		jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 1"));
 		jPanel4.setFont(new java.awt.Font("LuzSans-Book", 0, 12));
 
-		jLabel6.setFont(new java.awt.Font("LuzSans-Book", 1, 16));
+		jLabel6.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jLabel6.setText("jLabel6");
 
 		javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(
@@ -238,9 +269,9 @@ public class Principal extends javax.swing.JFrame {
 
 		jPanel10.add(jPanel4);
 
-		jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 3"));
+		jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 2"));
 
-		jLabel7.setFont(new java.awt.Font("LuzSans-Book", 1, 16));
+		jLabel7.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jLabel7.setText("jLabel7");
 
 		javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(
@@ -266,9 +297,9 @@ public class Principal extends javax.swing.JFrame {
 
 		jPanel10.add(jPanel7);
 
-		jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 2"));
+		jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 3"));
 
-		jLabel8.setFont(new java.awt.Font("LuzSans-Book", 1, 16));
+		jLabel8.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jLabel8.setText("jLabel8");
 
 		javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(
@@ -290,7 +321,7 @@ public class Principal extends javax.swing.JFrame {
 
 		jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 4"));
 
-		jLabel9.setFont(new java.awt.Font("LuzSans-Book", 1, 16));
+		jLabel9.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jLabel9.setText("jLabel9");
 
 		javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(
@@ -310,7 +341,7 @@ public class Principal extends javax.swing.JFrame {
 
 		jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("Via 5"));
 
-		jLabel10.setFont(new java.awt.Font("LuzSans-Book", 1, 16));
+		jLabel10.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jLabel10.setText("jLabel10");
 
 		javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(
@@ -407,6 +438,11 @@ public class Principal extends javax.swing.JFrame {
 		jComboBox2.setFont(new java.awt.Font("LuzSans-Book", 0, 16));
 		jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] {
 				"Via 1", "Via 2", "Via 3", "Via 4","Via 5" }));
+		jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jComboBox2ActionPerformed(evt);
+			}
+		});
 
 		jButton1.setBackground(new java.awt.Color(255, 255, 255));
 		jButton1.setFont(new java.awt.Font("LuzSans-Book", 0, 18));
@@ -622,7 +658,8 @@ public class Principal extends javax.swing.JFrame {
 	//GEN-END:initComponents
 
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-		// TODO add your handling code here:
+		JDialog alerta = new Alerta_Samu(via_acidente,monitoramentoAcidente,jTable2);
+		alerta.setVisible(true);
 	}
 
 	private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -630,6 +667,12 @@ public class Principal extends javax.swing.JFrame {
 
 		JComboBox cb = (JComboBox) evt.getSource();
 		elemento_atual_cb = (String) cb.getSelectedItem();
+	}
+	
+	private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt){
+		JComboBox cb = (JComboBox) evt.getSource();
+		via_acidente = (String) cb.getSelectedItem();
+		
 	}
 
 	private void jSliderQtdCarrosStateChanged(javax.swing.event.ChangeEvent evt) {
@@ -641,7 +684,7 @@ public class Principal extends javax.swing.JFrame {
 		String insert_data = elemento_atual_cb + "-" + slider_value;
 		monitoramento.atualizarInformacoes(insert_data);
 		updateLabels(elemento_atual_cb.codePointAt(0) - 48,
-				monitoramento.trafficService.message);
+				monitoramento.getMessage());
 
 	}
 
@@ -704,7 +747,7 @@ public class Principal extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				JFrame frame = new Principal();
-				//SjPanel1.add(jTable1, jTable1.CENTER_ALIGNMENT);
+				//SjPanel1.add(, jTable1.CENTER_ALIGNMENT);
 				frame.setVisible(true);
 			}
 		});
@@ -741,5 +784,6 @@ public class Principal extends javax.swing.JFrame {
 	private javax.swing.JScrollPane jScrollPane1;
 	private javax.swing.JSlider jSliderQtdCarros;
 	private javax.swing.JTable jTable1;
+	private javax.swing.JTable jTable2;
 	// End of variables declaration//GEN-END:variables
 }

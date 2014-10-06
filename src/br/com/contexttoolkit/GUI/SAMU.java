@@ -6,15 +6,37 @@
 
 package br.com.contexttoolkit.GUI;
 
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import br.com.contexttoolkit.services.Monitoramento;
+import br.com.contexttoolkit.services.MonitoramentoAcidente;
+
 /**
  *
  * @author  __USER__
  */
-public class SAMU extends javax.swing.JFrame {
+public class SAMU extends javax.swing.JDialog {
+
+	private MonitoramentoAcidente monitoramentoAcidente;
+	private JTable jTable1;
 
 	/** Creates new form SAMU */
 	public SAMU() {
 		initComponents();
+	}
+
+	public SAMU(String isAccident, int via_acidente,
+			MonitoramentoAcidente monitoramentoAcidente, JTable jTable) {
+		this.monitoramentoAcidente = monitoramentoAcidente;
+		this.monitoramentoAcidente.atualizarInformacoes(isAccident + "-"
+				+ String.valueOf(via_acidente));
+
+		System.out.println(monitoramentoAcidente.getIsAccident());
+		this.jTable1=jTable;
+		initComponents();
+		
 	}
 
 	/** This method is called from within the constructor to
@@ -25,31 +47,66 @@ public class SAMU extends javax.swing.JFrame {
 	//GEN-BEGIN:initComponents
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
-		bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		jPanel1 = new javax.swing.JPanel();
+		jLabel1 = new javax.swing.JLabel();
+		jScrollPane1 = new javax.swing.JScrollPane();
+		
 
-		org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings
-				.createAutoBinding(
-						org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE,
-						this,
-						org.jdesktop.beansbinding.ObjectProperty.create(),
-						this,
-						org.jdesktop.beansbinding.BeanProperty.create("title"),
-						"SAMU");
-		bindingGroup.addBinding(binding);
+		setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+		jPanel1.setBackground(new java.awt.Color(220, 240, 239));
+
+		jLabel1.setFont(new java.awt.Font("LuzSans-Book", 0, 20));
+		jLabel1.setText("Situa\u00e7\u00e3o Atual");
+		
+		((ModifiedModelSAMU) jTable1.getModel()).setAt(0,
+				monitoramentoAcidente.getViaNumber(),
+				monitoramentoAcidente.getIsAccident());
+		jScrollPane1.setViewportView(jTable1);
+
+		javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(
+				jPanel1);
+		jPanel1.setLayout(jPanel1Layout);
+		jPanel1Layout.setHorizontalGroup(jPanel1Layout
+				.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+				.addGroup(
+						jPanel1Layout.createSequentialGroup().addContainerGap()
+								.addComponent(jLabel1)
+								.addContainerGap(616, Short.MAX_VALUE))
+				.addGroup(
+						javax.swing.GroupLayout.Alignment.TRAILING,
+						jPanel1Layout
+								.createSequentialGroup()
+								.addContainerGap(39, Short.MAX_VALUE)
+								.addComponent(jScrollPane1,
+										javax.swing.GroupLayout.PREFERRED_SIZE,
+										677,
+										javax.swing.GroupLayout.PREFERRED_SIZE)
+								.addGap(38, 38, 38)));
+		jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(
+				javax.swing.GroupLayout.Alignment.LEADING).addGroup(
+				jPanel1Layout
+						.createSequentialGroup()
+						.addContainerGap()
+						.addComponent(jLabel1)
+						.addGap(18, 18, 18)
+						.addComponent(jScrollPane1,
+								javax.swing.GroupLayout.PREFERRED_SIZE, 50,
+								javax.swing.GroupLayout.PREFERRED_SIZE)
+						.addContainerGap(64, Short.MAX_VALUE)));
 
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400,
-				Short.MAX_VALUE));
+				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 300,
-				Short.MAX_VALUE));
-
-		bindingGroup.bind();
+				javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+				jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE,
+				javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
 
 		pack();
 	}// </editor-fold>
@@ -68,7 +125,10 @@ public class SAMU extends javax.swing.JFrame {
 
 	//GEN-BEGIN:variables
 	// Variables declaration - do not modify
-	private org.jdesktop.beansbinding.BindingGroup bindingGroup;
+	private javax.swing.JLabel jLabel1;
+	private javax.swing.JPanel jPanel1;
+	private javax.swing.JScrollPane jScrollPane1;
+	
 	// End of variables declaration//GEN-END:variables
 
 }

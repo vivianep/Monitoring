@@ -2,10 +2,11 @@ package br.com.contexttoolkit.GUI;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ModifiedModel extends AbstractTableModel {
+public class ModifiedModelSAMU extends AbstractTableModel {
+	
 	private String[] columnNames={"", "Via 1","Via 2","Via 3","Via 4 ","Via 5 "}; 
-	private Object[][] data={{"Quantidade de Carros",0, 0, 0, 0, 0 }};
-			
+	private String[][] data={{"Acidente na Via","Não", "Não", "Não", "Não", "Não" }};
+					
 	
 	
 	public int getColumnCount() {
@@ -24,8 +25,8 @@ public class ModifiedModel extends AbstractTableModel {
         return data[row][col];
     }
 	
-	public void setAt(int rowIndex,int columnIndex, Object object){
-		data[rowIndex][columnIndex]=object;
+	public void setAt(int rowIndex,int columnIndex, String string){
+		data[rowIndex][columnIndex]=string;
 		fireTableCellUpdated(rowIndex,columnIndex);
 	}
 

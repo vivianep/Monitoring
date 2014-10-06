@@ -15,7 +15,7 @@
 				
 			)
 		</Query>
-		<Outcome outAttribute="message">isAccident+"-"+via</Outcome>
+		<Outcome outAttribute="message">"Sim"+"-"+via</Outcome>
 		<ServiceInput service="AccidentService" function="accidentControl">
 			<Attribute name="message" />
 		</ServiceInput>
@@ -28,7 +28,7 @@
 				(EQUAL isAccident false)
 			)
 		</Query>
-		<Outcome outAttribute="message">isAccident+"-"+via</Outcome>
+		<Outcome outAttribute="message">"Não"+"-"+via</Outcome>
 		<ServiceInput service="AccidentService" function="accidentControl">
 			<Attribute name="message" />
 		</ServiceInput>

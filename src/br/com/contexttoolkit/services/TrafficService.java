@@ -13,7 +13,7 @@ public class TrafficService extends Service {
 	
 	private SecretariaTransporteApplication secretariaTransporte;
 	private SAMUApplication samuApp;
-	public String message;
+	private String message;
 
 	@SuppressWarnings("serial")
 	public TrafficService(final Widget widget) {
@@ -37,10 +37,14 @@ public class TrafficService extends Service {
 		message = input.getInput().getAttributeValue("message");
 		
         String valores[] = message.split("-");
-        System.out.println(valores[2]);
-        secretariaTransporte.atualizar(Integer.parseInt(valores[0]), Integer.parseInt(valores[1]), valores[2]);
+        //System.out.println(valores[2]);
+        //secretariaTransporte.atualizar(Integer.parseInt(valores[0]), Integer.parseInt(valores[1]), valores[2]);
         message=valores[2];
 		return null;
+	}
+	
+	public String getMessage(){
+		return message;
 	}
 
 }

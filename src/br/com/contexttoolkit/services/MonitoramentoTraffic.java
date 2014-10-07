@@ -30,11 +30,10 @@ public class MonitoramentoTraffic implements Monitoramento {
 		String[] str = message.split("-");
 		int via = Integer.parseInt(str[0]);
 		int quantCarros = Integer.parseInt(str[1]);
-		
 		trafficInput.updateData("via", via);
 		trafficInput.updateData("carros", quantCarros);
 		trafficInput.updateData("notifications", true);
-		//trafficInput.updateData("notifications", false);
+		trafficInput.updateData("notifications", false);
 		
 	}
 

@@ -13,7 +13,7 @@ public class AccidentService extends Service {
 	
 	private SecretariaTransporteApplication secretariaTransporte;
 	private SAMUApplication samuApp;
-	private String accident="N";
+
 	
 	@SuppressWarnings("serial")
 	public AccidentService(final Widget widget) {
@@ -34,19 +34,13 @@ public class AccidentService extends Service {
 		
 		secretariaTransporte = SecretariaTransporteApplication.getInstance();
 		samuApp = SAMUApplication.getInstance();
-		
 		String message = input.getInput().getAttributeValue("message");
-		
         String valores[] = message.split("-");
-        accident=valores[0];
         secretariaTransporte.atualizar(Integer.parseInt(valores[1]), valores[0]);
         samuApp.atualizar(Integer.parseInt(valores[1]), valores[0]);
         
 		return null;
 	}
 	
-	public String getIsAccident(){
-		return this.accident;
-	}
-
+	
 }

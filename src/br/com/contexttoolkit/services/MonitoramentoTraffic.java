@@ -37,10 +37,6 @@ public class MonitoramentoTraffic implements Monitoramento {
 		//trafficInput.updateData("notifications", false);
 		
 	}
-	
-	public String getMessage(){
-		return trafficService.getMessage();
-	}
-	
+
 
 }

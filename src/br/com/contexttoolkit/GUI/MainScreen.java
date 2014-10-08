@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 
+import context.arch.discoverer.Discoverer;
 import br.com.contexttoolkit.GUI.ModifiedModel;
 import br.com.contexttoolkit.GUI.ModifiedModelSAMU;
 import br.com.contexttoolkit.app.SAMUApplication;
@@ -19,19 +20,22 @@ import br.com.contexttoolkit.services.MonitoramentoTraffic;
 
 public class MainScreen extends JFrame{
 		
-		private Monitoramento monitoramentoTraffic;
+		private MonitoramentoTraffic monitoramentoTraffic;
+		MonitoramentoAcidente monitoramentoAcidente;
 		private String elemento_atual_cb = "1";
 		private String via_acidente;
 		
-		private Monitoramento monitoramentoAcidente;
+		//private Monitoramento monitoramentoAcidente;
 
 
 
 		public MainScreen() {
 			
+				Discoverer.start();
+				this.monitoramentoTraffic =  new MonitoramentoTraffic();
 				this.monitoramentoAcidente= new MonitoramentoAcidente();
 				via_acidente="Via 1";
-				this.monitoramentoTraffic =  new MonitoramentoTraffic();
+				
 				initComponents();
 				
 		}

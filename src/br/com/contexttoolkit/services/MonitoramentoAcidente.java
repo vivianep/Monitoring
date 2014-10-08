@@ -15,7 +15,7 @@ public class MonitoramentoAcidente implements Monitoramento {
 
 	
 	public MonitoramentoAcidente() {
-		Discoverer.start();
+		//Discoverer.start();
 		
 		accidentInput = WidgetXmlParser.createWidget("resources/accident-widget-input.xml");
 		accidentWidget = WidgetXmlParser.createWidget("resources/accident-widget-output.xml");

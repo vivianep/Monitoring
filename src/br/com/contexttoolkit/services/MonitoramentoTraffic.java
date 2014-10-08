@@ -14,7 +14,7 @@ public class MonitoramentoTraffic implements Monitoramento {
 	private TrafficService trafficService;
 	
 	public MonitoramentoTraffic() {
-		Discoverer.start();
+		//Discoverer.start();
 		
 		trafficInput = WidgetXmlParser.createWidget("resources/traffic-widget-input.xml");
 		trafficWidget = WidgetXmlParser.createWidget("resources/traffic-widget-output.xml");
@@ -32,8 +32,8 @@ public class MonitoramentoTraffic implements Monitoramento {
 		int quantCarros = Integer.parseInt(str[1]);
 		trafficInput.updateData("via", via);
 		trafficInput.updateData("carros", quantCarros);
-		trafficInput.updateData("notifications", true);
-		trafficInput.updateData("notifications", false);
+		//trafficInput.updateData("notifications", true);
+		//trafficInput.updateData("notifications", false);
 		
 	}
 
